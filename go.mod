@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/gin-gonic/gin v1.9.0
-	github.com/sebin-pavus/sample v0.0.0-20220820114343-b74453f770ef
+	github.com/joho/godotenv v1.5.1
 )
 
 require (

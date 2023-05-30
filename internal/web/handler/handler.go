@@ -10,9 +10,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetTopMenuItems(c *gin.Context) {
+type HandlerInterface interface {
+	GetTopMenuItems(c *gin.Context)
+}
+
+type HandlerStruct struct {
+	Service service.ServiceInterface
+}
+
+func (h HandlerStruct) GetTopMenuItems(c *gin.Context) {
 	logFile := os.Getenv("LOG_FILE")
-	topMenuItems, err := service.GetTopMenuItems(logFile)
+
+	topMenuItems, err := h.Service.GetTopMenuItems(logFile)
 	if err != nil {
 		errResponse := model.ErrorResponse{ErrorMessage: err.Error()}
 		c.AbortWithStatusJSON(http.StatusBadRequest, errResponse)

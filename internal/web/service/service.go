@@ -9,7 +9,13 @@ import (
 	"strings"
 )
 
-func GetTopMenuItems(logFile string) ([]string, error) {
+type ServiceInterface interface {
+	GetTopMenuItems(logFile string) ([]string, error)
+}
+
+type ServiceStruct struct{}
+
+func (s ServiceStruct) GetTopMenuItems(logFile string) ([]string, error) {
 
 	topMenuItems := make([]string, 0)
 	file, err := os.Open(logFile)
